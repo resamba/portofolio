@@ -1,0 +1,915 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================================================
+       ATHOILLAH PORTFOLIO - TEXT CONTENT UPDATE
+       Tidak mengubah desain, layout, animasi, CSS, atau struktur.
+       Hanya mengganti isi teks agar sesuai profil Athoillah.
+    ========================================================= */
+
+    // =========================
+    // NAVBAR
+    // =========================
+    const navText = {
+        "Beranda": "Beranda",
+        "Tentang": "Tentang Saya",
+        "Keahlian": "Keahlian",
+        "Portofolio": "Portofolio",
+        "Pengalaman": "Pengalaman",
+        "Kontak": "Kontak"
+    };
+
+    document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(el => {
+        const text = el.textContent.trim();
+        if (navText[text]) el.textContent = navText[text];
+    });
+
+
+    // =========================
+    // LOGO
+    // =========================
+    document.querySelectorAll("header a, footer span").forEach(el => {
+        if (el.textContent.includes("Reitrann.dev")) {
+            el.innerHTML = `Athoillah<span class="gradient-text">.TKJ</span>`;
+        }
+    });
+
+
+    // =========================
+    // HERO
+    // =========================
+    const hero = document.querySelector("#home");
+
+    if (hero) {
+
+        // Status
+        const status = hero.querySelector(".inline-flex span:last-child");
+        if (status) {
+            status.textContent =
+                "Siswa XII TKJ 1 • Terbuka untuk Project & PKL";
+        }
+
+        // Judul
+        const heroTitle = hero.querySelector("h1");
+        if (heroTitle) {
+            heroTitle.innerHTML =
+                `Halo, Saya <span class="gradient-text">Athoillah</span>`;
+        }
+
+        // Deskripsi
+        const heroParagraph = hero.querySelector("p.text-slate-600");
+        if (heroParagraph) {
+            heroParagraph.textContent =
+                "Saya memiliki minat di bidang IT, khususnya Teknik Komputer & Jaringan. Memiliki dasar perakitan komputer, jaringan LAN, troubleshooting perangkat, serta editing foto dan video.";
+        }
+
+        // Foto/status
+        const heroStatus = hero.querySelector(".absolute.bottom-4");
+        if (heroStatus) {
+            const small = heroStatus.querySelector("p:first-child");
+            const big = heroStatus.querySelector("p:last-child");
+
+            if (small) small.textContent = "STATUS & JURUSAN";
+
+            if (big) {
+                big.innerHTML = `
+                    <i class="fa-solid fa-graduation-cap text-pink-400"></i>
+                    <span>Siswa XII TKJ 1 (Teknik Komputer & Jaringan)</span>
+                `;
+            }
+        }
+
+        // Kartu statistik
+        const statCards = hero.querySelectorAll(".grid.grid-cols-2 > div");
+
+        if (statCards.length >= 2) {
+
+            const first = statCards[0];
+            first.querySelector(".text-xs").textContent = "Jurusan";
+            first.querySelector(".text-sm").textContent = "Teknik Komputer";
+
+            const second = statCards[1];
+            second.querySelector(".text-xs").textContent = "Fokus";
+            second.querySelector(".text-sm").textContent = "TKJ & Editing";
+        }
+    }
+
+
+    // =========================
+    // TYPEWRITER
+    // =========================
+    // Karena const words lama sudah dibuat oleh kode asli,
+    // kita buat ulang efek typing menggunakan elemen yang sama.
+
+    const typewriter = document.getElementById("typewriter");
+
+    if (typewriter) {
+
+        const newWords = [
+            "Siswa XII TKJ 1",
+            "Teknik Komputer & Jaringan",
+            "Network Enthusiast",
+            "Content Editor"
+        ];
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function newTypewriter() {
+
+            const word = newWords[wordIndex];
+
+            if (!deleting) {
+                typewriter.textContent =
+                    word.substring(0, charIndex + 1);
+
+                charIndex++;
+
+                if (charIndex === word.length) {
+                    deleting = true;
+                    setTimeout(newTypewriter, 1800);
+                    return;
+                }
+
+                setTimeout(newTypewriter, 90);
+
+            } else {
+
+                typewriter.textContent =
+                    word.substring(0, charIndex - 1);
+
+                charIndex--;
+
+                if (charIndex === 0) {
+                    deleting = false;
+                    wordIndex =
+                        (wordIndex + 1) % newWords.length;
+
+                    setTimeout(newTypewriter, 500);
+                    return;
+                }
+
+                setTimeout(newTypewriter, 45);
+            }
+        }
+
+        setTimeout(newTypewriter, 1500);
+    }
+
+
+    // =========================
+    // ABOUT
+    // =========================
+    const about = document.querySelector("#about");
+
+    if (about) {
+
+        // Judul section
+        const mainTitle = about.querySelector(
+            ".text-center p.font-heading"
+        );
+
+        if (mainTitle) {
+            mainTitle.textContent =
+                "Mengenal Saya Lebih Dekat";
+        }
+
+        // Judul "Siapa Saya?"
+        const whoTitle = about.querySelector("h3");
+
+        if (whoTitle) {
+            whoTitle.textContent = "Siapa Saya?";
+        }
+
+        // Paragraf tentang diri
+        const aboutParagraphs =
+            about.querySelectorAll(
+                ".lg\\:col-span-7 > p"
+            );
+
+        if (aboutParagraphs.length >= 2) {
+
+            aboutParagraphs[0].textContent =
+                "Saya adalah siswa jurusan Teknik Komputer & Jaringan yang memiliki ketertarikan pada dunia teknologi, komputer, jaringan, dan editing konten. Saya senang mempelajari hal baru serta mengembangkan kemampuan melalui praktik dan berbagai project.";
+
+            aboutParagraphs[1].textContent =
+                "Saya memiliki dasar dalam perakitan komputer, jaringan LAN, troubleshooting perangkat, serta editing foto dan video menggunakan berbagai aplikasi kreatif.";
+        }
+
+
+        // =========================
+        // ABOUT HIGHLIGHTS
+        // =========================
+
+        const highlightCards =
+            about.querySelectorAll(
+                ".grid.grid-cols-1.sm\\:grid-cols-2 > div"
+            );
+
+        if (highlightCards.length >= 4) {
+
+            const data = [
+                [
+                    "Perakitan Komputer",
+                    "Memahami dasar perakitan dan komponen komputer."
+                ],
+                [
+                    "Jaringan LAN",
+                    "Memahami dasar jaringan komputer dan koneksi LAN."
+                ],
+                [
+                    "Troubleshooting",
+                    "Mencari dan menangani masalah pada perangkat komputer."
+                ],
+                [
+                    "Editing Konten",
+                    "Membuat dan mengedit foto maupun video."
+                ]
+            ];
+
+            highlightCards.forEach((card, i) => {
+
+                const title = card.querySelector("h4");
+                const desc = card.querySelector("p");
+
+                if (title) title.textContent = data[i][0];
+                if (desc) desc.textContent = data[i][1];
+
+            });
+        }
+
+
+        // =========================
+        // INFORMASI RINGKAS
+        // =========================
+
+        const infoCard = about.querySelector(
+            ".lg\\:col-span-5"
+        );
+
+        if (infoCard) {
+
+            const rows =
+                infoCard.querySelectorAll(
+                    ".space-y-4 > div"
+                );
+
+            if (rows.length >= 5) {
+
+                const info = [
+                    ["Nama Lengkap",
+                     "Muhammad Athoillah Solahuddin Al Ayyubi"],
+
+                    ["Kelas / Jurusan",
+                     "XII TKJ 1"],
+
+                    ["Fokus Keahlian",
+                     "TKJ & Editing"],
+
+                    ["Email",
+                     "ziyuriigj@gmail.com"],
+
+                    ["Status",
+                     "Pelajar / Siap Project"]
+                ];
+
+                rows.forEach((row, i) => {
+
+                    const spans = row.querySelectorAll("span");
+
+                    if (spans.length >= 2) {
+
+                        spans[0].textContent =
+                            info[i][0];
+
+                        spans[1].textContent =
+                            info[i][1];
+                    }
+
+                });
+            }
+        }
+    }
+
+
+    // =========================
+    // SKILLS
+    // =========================
+    const skills = document.querySelector("#skills");
+
+    if (skills) {
+
+        const title = skills.querySelector(
+            ".text-center p.font-heading"
+        );
+
+        if (title) {
+            title.textContent =
+                "Keahlian & Aplikasi Yang Saya Kuasai";
+        }
+
+
+        const cards =
+            skills.querySelectorAll(
+                ".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 > div"
+            );
+
+        // -------------------------
+        // CARD 1
+        // -------------------------
+        if (cards[0]) {
+
+            const heading = cards[0].querySelector("h3");
+            const subtitle = cards[0].querySelector("p");
+
+            if (heading)
+                heading.textContent =
+                    "Teknik Komputer & Jaringan";
+
+            if (subtitle)
+                subtitle.textContent =
+                    "Dasar Komputer & Jaringan";
+
+            const items =
+                cards[0].querySelectorAll(".space-y-4 > div");
+
+            const data = [
+                ["Perakitan Komputer", "80%", "80%"],
+                ["Jaringan LAN", "75%", "75%"],
+                ["Troubleshooting", "80%", "80%"]
+            ];
+
+            items.forEach((item, i) => {
+
+                const spans = item.querySelectorAll(
+                    ".flex.justify-between span"
+                );
+
+                if (spans.length >= 2) {
+
+                    spans[0].textContent =
+                        data[i][0];
+
+                    spans[1].textContent =
+                        data[i][1];
+                }
+
+                const bar =
+                    item.querySelector(
+                        ".bg-gradient-to-r"
+                    );
+
+                if (bar)
+                    bar.style.width =
+                        data[i][2];
+            });
+        }
+
+
+        // -------------------------
+        // CARD 2
+        // -------------------------
+        if (cards[1]) {
+
+            const heading = cards[1].querySelector("h3");
+            const subtitle = cards[1].querySelector("p");
+
+            if (heading)
+                heading.textContent =
+                    "Editing Foto & Video";
+
+            if (subtitle)
+                subtitle.textContent =
+                    "Kreativitas & Konten Digital";
+
+            const items =
+                cards[1].querySelectorAll(".space-y-4 > div");
+
+            const data = [
+                ["Editing Foto & Video", "85%", "85%"],
+                ["Alight Motion", "85%", "85%"],
+                ["CapCut", "90%", "90%"]
+            ];
+
+            items.forEach((item, i) => {
+
+                const spans = item.querySelectorAll(
+                    ".flex.justify-between span"
+                );
+
+                if (spans.length >= 2) {
+
+                    spans[0].textContent =
+                        data[i][0];
+
+                    spans[1].textContent =
+                        data[i][1];
+                }
+
+                const bar =
+                    item.querySelector(
+                        ".bg-gradient-to-r"
+                    );
+
+                if (bar)
+                    bar.style.width =
+                        data[i][2];
+            });
+        }
+
+
+        // -------------------------
+        // CARD 3
+        // -------------------------
+        if (cards[2]) {
+
+            const heading = cards[2].querySelector("h3");
+            const subtitle = cards[2].querySelector("p");
+
+            if (heading)
+                heading.textContent =
+                    "Aplikasi Yang Dikuasai";
+
+            if (subtitle)
+                subtitle.textContent =
+                    "Tools Kreatif & Produktivitas";
+
+            const items =
+                cards[2].querySelectorAll(".space-y-4 > div");
+
+            const data = [
+                ["Canva", "90%", "90%"],
+                ["Alight Motion", "85%", "85%"],
+                ["CapCut", "90%", "90%"]
+            ];
+
+            items.forEach((item, i) => {
+
+                const spans = item.querySelectorAll(
+                    ".flex.justify-between span"
+                );
+
+                if (spans.length >= 2) {
+
+                    spans[0].textContent =
+                        data[i][0];
+
+                    spans[1].textContent =
+                        data[i][1];
+                }
+
+                const bar =
+                    item.querySelector(
+                        ".bg-gradient-to-r"
+                    );
+
+                if (bar)
+                    bar.style.width =
+                        data[i][2];
+            });
+        }
+    }
+
+
+    // =========================
+    // PORTFOLIO
+    // =========================
+    const projects =
+        document.querySelector("#projects");
+
+    if (projects) {
+
+        const title =
+            projects.querySelector(
+                ".text-center p.font-heading"
+            );
+
+        if (title)
+            title.textContent =
+                "Project & Karya Saya";
+
+
+        // Kategori
+        const filterButtons =
+            projects.querySelectorAll(
+                ".filter-btn"
+            );
+
+        if (filterButtons.length >= 4) {
+
+            filterButtons[0].textContent =
+                "Semua Project";
+
+            filterButtons[1].textContent =
+                "Project TKJ";
+
+            filterButtons[2].textContent =
+                "Editing";
+
+            filterButtons[3].textContent =
+                "Desain";
+        }
+
+
+        // -------------------------
+        // PROJECT 1
+        // -------------------------
+        const projectCards =
+            projects.querySelectorAll(
+                ".project-card"
+            );
+
+        if (projectCards[0]) {
+
+            const category =
+                projectCards[0].querySelector(
+                    "span"
+                );
+
+            const title =
+                projectCards[0].querySelector(
+                    "h3"
+                );
+
+            const desc =
+                projectCards[0].querySelector(
+                    "p"
+                );
+
+            if (category)
+                category.textContent =
+                    "Project TKJ";
+
+            if (title)
+                title.textContent =
+                    "Praktik Jaringan LAN";
+
+            if (desc)
+                desc.textContent =
+                    "Praktik membuat dan memahami jaringan LAN serta melakukan konfigurasi dan troubleshooting dasar jaringan komputer.";
+        }
+
+
+        // -------------------------
+        // PROJECT 2
+        // -------------------------
+        if (projectCards[1]) {
+
+            const category =
+                projectCards[1].querySelector(
+                    "span"
+                );
+
+            const title =
+                projectCards[1].querySelector(
+                    "h3"
+                );
+
+            const desc =
+                projectCards[1].querySelector(
+                    "p"
+                );
+
+            if (category)
+                category.textContent =
+                    "Editing";
+
+            if (title)
+                title.textContent =
+                    "Editing Video";
+
+            if (desc)
+                desc.textContent =
+                    "Project editing video menggunakan CapCut dan Alight Motion dengan kombinasi transisi, efek, teks, dan audio.";
+        }
+
+
+        // -------------------------
+        // PROJECT 3
+        // -------------------------
+        if (projectCards[2]) {
+
+            const category =
+                projectCards[2].querySelector(
+                    "span"
+                );
+
+            const title =
+                projectCards[2].querySelector(
+                    "h3"
+                );
+
+            const desc =
+                projectCards[2].querySelector(
+                    "p"
+                );
+
+            if (category)
+                category.textContent =
+                    "Desain";
+
+            if (title)
+                title.textContent =
+                    "Desain Canva";
+
+            if (desc)
+                desc.textContent =
+                    "Membuat berbagai desain visual menggunakan Canva seperti poster, konten media sosial, dan kebutuhan presentasi.";
+        }
+    }
+
+
+    // =========================
+    // EXPERIENCE
+    // =========================
+    const experience =
+        document.querySelector("#experience");
+
+    if (experience) {
+
+        const mainTitle =
+            experience.querySelector(
+                ".text-center p.font-heading"
+            );
+
+        if (mainTitle)
+            mainTitle.textContent =
+                "Pengalaman & Pendidikan";
+
+
+        const timeline =
+            experience.querySelectorAll(
+                ".relative.group"
+            );
+
+
+        // EXPERIENCE 1
+        if (timeline[0]) {
+
+            const title =
+                timeline[0].querySelector("h3");
+
+            const date =
+                timeline[0].querySelector(
+                    "span"
+                );
+
+            const company =
+                timeline[0].querySelector(
+                    "p"
+                );
+
+            const list =
+                timeline[0].querySelectorAll(
+                    "li"
+                );
+
+            if (title)
+                title.textContent =
+                    "Praktik Teknik Komputer & Jaringan";
+
+            if (date)
+                date.textContent =
+                    "Selama Masa Sekolah";
+
+            if (company)
+                company.textContent =
+                    "Praktik Sekolah • Teknik Komputer & Jaringan";
+
+            if (list.length >= 3) {
+
+                list[0].textContent =
+                    "Melakukan praktik dasar perakitan dan instalasi komputer.";
+
+                list[1].textContent =
+                    "Mempelajari jaringan LAN dan koneksi antarperangkat.";
+
+                list[2].textContent =
+                    "Melakukan troubleshooting dasar pada komputer dan perangkat jaringan.";
+            }
+        }
+
+
+        // EXPERIENCE 2
+        if (timeline[1]) {
+
+            const title =
+                timeline[1].querySelector("h3");
+
+            const date =
+                timeline[1].querySelector(
+                    "span"
+                );
+
+            const company =
+                timeline[1].querySelector(
+                    "p"
+                );
+
+            const list =
+                timeline[1].querySelectorAll(
+                    "li"
+                );
+
+            if (title)
+                title.textContent =
+                    "Project Editing & Desain";
+
+            if (date)
+                date.textContent =
+                    "Selama Masa Sekolah";
+
+            if (company)
+                company.textContent =
+                    "Project Pribadi • Editing & Desain";
+
+            if (list.length >= 2) {
+
+                list[0].textContent =
+                    "Membuat dan mengedit video menggunakan CapCut dan Alight Motion.";
+
+                list[1].textContent =
+                    "Membuat desain visual menggunakan Canva.";
+            }
+        }
+
+
+        // EDUCATION
+        if (timeline[2]) {
+
+            const title =
+                timeline[2].querySelector("h3");
+
+            const date =
+                timeline[2].querySelector(
+                    "span"
+                );
+
+            const school =
+                timeline[2].querySelector(
+                    "p"
+                );
+
+            const desc =
+                timeline[2].querySelector(
+                    "p:last-child"
+                );
+
+            if (title)
+                title.textContent =
+                    "SMK Ma'arif NU Tirto";
+
+            if (date)
+                date.textContent =
+                    "2024 - Sekarang";
+
+            if (school)
+                school.textContent =
+                    "XII TKJ 1 • Teknik Komputer & Jaringan";
+
+            if (desc)
+                desc.textContent =
+                    "Mempelajari dasar komputer, jaringan, troubleshooting, perakitan komputer, serta teknologi informasi.";
+        }
+    }
+
+
+    // =========================
+    // CONTACT
+    // =========================
+    const contact =
+        document.querySelector("#contact");
+
+    if (contact) {
+
+        const title =
+            contact.querySelector(
+                ".text-center p.font-heading"
+            );
+
+        if (title)
+            title.textContent =
+                "Punya Pertanyaan atau Ingin Berkolaborasi?";
+
+
+        // Email
+        const emailLink =
+            contact.querySelector(
+                'a[href^="mailto:"]'
+            );
+
+        if (emailLink) {
+
+            emailLink.href =
+                "mailto:ziyuriigj@gmail.com";
+
+            emailLink.textContent =
+                "ziyuriigj@gmail.com";
+        }
+
+
+        // WhatsApp
+        const waLink =
+            contact.querySelector(
+                'a[href*="wa.me"]'
+            );
+
+        if (waLink) {
+
+            waLink.href =
+                "https://wa.me/6287701492919";
+
+            waLink.textContent =
+                "+62 877-0149-2919";
+        }
+
+
+        // Domisili
+        const locationText =
+            contact.querySelector(
+                ".fa-location-dot"
+            );
+
+        if (locationText) {
+
+            const parent =
+                locationText.closest(
+                    ".flex.items-center"
+                );
+
+            if (parent) {
+
+                const p =
+                    parent.querySelector("p");
+
+                if (p)
+                    p.textContent =
+                        "Pekalongan, Indonesia";
+            }
+        }
+
+
+        // Form placeholder
+        const message =
+            document.getElementById("message");
+
+        if (message) {
+            message.placeholder =
+                "Halo Athoillah, saya ingin berdiskusi mengenai project...";
+        }
+    }
+
+
+    // =========================
+    // FOOTER
+    // =========================
+    const footer =
+        document.querySelector("footer");
+
+    if (footer) {
+
+        const logo =
+            footer.querySelector(
+                ".font-heading"
+            );
+
+        if (logo) {
+
+            logo.innerHTML =
+                `Athoillah<span class="gradient-text">.TKJ</span>`;
+        }
+
+        const copyright =
+            footer.querySelector(
+                "p.text-xs"
+            );
+
+        if (copyright) {
+
+            copyright.textContent =
+                "© 2026 Athoillah. Seluruh hak cipta dilindungi.";
+        }
+    }
+
+
+    // =========================
+    // SOCIAL MEDIA
+    // =========================
+    const socialLinks =
+        document.querySelectorAll(
+            '#home a[target="_blank"]'
+        );
+
+    // Tetap menggunakan link sosial yang sudah ada
+    // di kode utama kamu.
+
+
+    console.log(
+        "✓ Profil Athoillah berhasil diperbarui."
+    );
+
+});
+</script>
+</body>
+</html>
