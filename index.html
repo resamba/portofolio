@@ -823,35 +823,89 @@
         // Project Data array for dynamic modal viewing
         const projectsData = [
             {
-                title: "MikroTik Network Configuration",
-                category: "Networking",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-                description: "Dokumentasi praktik konfigurasi jaringan komputer menggunakan MikroTik RouterOS dan WinBox. Proyek ini mencakup pengaturan alamat IP, gateway, DNS, serta pengujian konektivitas untuk memahami cara kerja jaringan dan komunikasi antarperangkat.",
-                features: ["Konfigurasi IP Address dan gateway", "Pengaturan DHCP dan DNS", "Konfigurasi NAT dan firewall dasar", "Pengujian konektivitas jaringan menggunakan ping"],
-                techStack: ["MikroTik RouterOS", "WinBox", "TCP/IP", "Ethernet dan LAN"],
-                liveUrl: "https://example.com",
-                githubUrl: "https://github.com/resamba/reitrann"
-            },
-            {
-                title: "Debian Server & SSH",
-                category: "SERVER/LINUX",
-                image: "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=800&q=80",
-                description: "Dokumentasi praktik administrasi server Linux menggunakan Debian di lingkungan virtualisasi VirtualBox. Proyek ini berfokus pada konfigurasi jaringan server, layanan SSH untuk akses jarak jauh, serta pengenalan pengelolaan layanan pada sistem operasi Linux.",
-                features: ["Instalasi dan konfigurasi Debian Server", "Pengaturan alamat IP dan jaringan server", "Konfigurasi layanan SSH", "Pengenalan pengelolaan layanan Linux"],
-                techStack: ["Debian Linux", "VirtualBox", "OpenSSH", "PuTTY", "Command Line Interface (CLI)"],
-                liveUrl: "https://example.com",
-                githubUrl: "https://github.com/resamba/reitrann"
-            },
-            {
-                title: "Web Portfolio",
-                category: "Web Development",
-                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
-                description: "Pengembangan website portofolio pribadi untuk menampilkan profil, keahlian, pengalaman belajar, dan dokumentasi proyek di bidang teknologi informasi. Website dibuat menggunakan HTML, CSS, dan JavaScript dengan desain responsif serta elemen interaktif agar nyaman diakses melalui desktop maupun perangkat seluler.",
-                features: ["Halaman profil dan perkenalan diri", "Daftar proyek dengan filter kategori", "Modal detail untuk setiap proyek", "Navigasi antar bagian website"],
-                techStack: ["HTML5", "CSS3", "Java Script", "GitHub Pages"],
-                liveUrl: "https://dribbble.com",
-                githubUrl: "https://github.com/resamba/reitrann"
-            }
+        title: "MikroTik Network Configuration",
+        category: "Networking",
+        image: "images/mikrotik.jpg",
+
+        description: "Dokumentasi praktik konfigurasi jaringan komputer menggunakan MikroTik RouterOS dan WinBox. Proyek ini mencakup pengaturan alamat IP, gateway, DNS, serta pengujian konektivitas untuk memahami cara kerja jaringan dan komunikasi antarperangkat.",
+
+        features: [
+            "Konfigurasi IP Address dan gateway",
+            "Pengaturan DHCP dan DNS",
+            "Konfigurasi NAT dan firewall dasar",
+            "Pengujian konektivitas menggunakan ping"
+        ],
+
+        techStack: [
+            "MikroTik RouterOS",
+            "WinBox",
+            "TCP/IP",
+            "Ethernet dan LAN"
+        ],
+
+        liveLabel: "Panduan RouterOS",
+        liveUrl: "https://manual.mikrotik.com/docs",
+
+        githubLabel: "Repository Proyek",
+        githubUrl: "https://github.com/resamba/reitrann"
+    },
+
+    {
+        title: "Debian Server & SSH",
+        category: "Server/Linux",
+        image: "images/debian.jpg",
+
+        description: "Dokumentasi praktik administrasi server Linux menggunakan Debian di lingkungan virtualisasi VirtualBox. Proyek ini berfokus pada konfigurasi jaringan server, layanan SSH untuk akses jarak jauh, serta pengenalan pengelolaan layanan pada sistem operasi Linux.",
+
+        features: [
+            "Instalasi dan konfigurasi Debian Server",
+            "Pengaturan alamat IP dan jaringan server",
+            "Konfigurasi layanan SSH",
+            "Remote access menggunakan PuTTY"
+        ],
+
+        techStack: [
+            "Debian Linux",
+            "VirtualBox",
+            "OpenSSH",
+            "PuTTY",
+            "CLI"
+        ],
+
+        liveLabel: "Panduan Debian",
+        liveUrl: "https://www.debian.org/doc/",
+
+        githubLabel: "Repository Proyek",
+        githubUrl: "https://github.com/resamba/reitrann"
+    },
+
+    {
+        title: "Web Portfolio",
+        category: "Web Development",
+        image: "images/portfolio.jpg",
+
+        description: "Pengembangan website portofolio pribadi untuk menampilkan profil, keahlian, pengalaman belajar, dan dokumentasi proyek di bidang teknologi informasi. Website dibuat menggunakan HTML, CSS, dan JavaScript dengan desain responsif serta elemen interaktif agar nyaman diakses melalui desktop maupun perangkat seluler.",
+
+        features: [
+            "Halaman profil dan perkenalan diri",
+            "Daftar proyek dengan filter kategori",
+            "Modal detail untuk setiap proyek",
+            "Navigasi antar bagian website"
+        ],
+
+        techStack: [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "GitHub Pages"
+        ],
+
+        liveLabel: "Lihat Website",
+        liveUrl: "ISI_LINK_WEBSITE_PORTFOLIO",
+
+        githubLabel: "Source Code",
+        githubUrl: "https://github.com/resamba/reitrann"
+    }
         ];
 
         // Theme Toggle Functionality
