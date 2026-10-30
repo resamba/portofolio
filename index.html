@@ -1160,22 +1160,53 @@
         }
 
         // Contact Form Submission Handler
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
+        
+const contactForm = document.getElementById('contactForm');
 
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Mengirim Pesan...</span>`;
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-            setTimeout(() => {
-                showToast("Terima kasih! Pesan Anda berhasil dikirim.", "success");
-                contactForm.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-            }, 1500);
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+        <i class="fa-solid fa-spinner animate-spin"></i>
+        <span>Mengirim Pesan...</span>
+    `;
+
+    try {
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: {
+                'Accept': 'application/json'
+            }
         });
+
+        if (!response.ok) {
+            throw new Error('Gagal mengirim pesan');
+        }
+
+        showToast(
+            "Pesan berhasil dikirim! Terima kasih.",
+            "success"
+        );
+
+        contactForm.reset();
+
+    } catch (error) {
+        showToast(
+            "Pesan gagal dikirim. Silakan coba lagi.",
+            "error"
+        );
+
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    }
+});
+
 
         // Download CV trigger notification
         document.getElementById('downloadCvBtn').addEventListener('click', () => {
