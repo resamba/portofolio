@@ -1161,6 +1161,7 @@
 
         // Contact Form Submission Handler
         
+
 const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', async (e) => {
@@ -1176,7 +1177,12 @@ contactForm.addEventListener('submit', async (e) => {
     `;
 
     try {
-        const response = await fetch(contactForm.action, {
+        const ajaxUrl = contactForm.action.replace(
+            'https://formsubmit.co/',
+            'https://formsubmit.co/ajax/'
+        );
+
+        const response = await fetch(ajaxUrl, {
             method: 'POST',
             body: new FormData(contactForm),
             headers: {
@@ -1184,21 +1190,25 @@ contactForm.addEventListener('submit', async (e) => {
             }
         });
 
-        if (!response.ok) {
-            throw new Error('Gagal mengirim pesan');
+        const result = await response.json();
+
+        if (String(result.success) !== 'true') {
+            throw new Error(result.message || 'Pengiriman ditolak server.');
         }
 
         showToast(
-            "Pesan berhasil dikirim! Terima kasih.",
-            "success"
+            'Pesan berhasil dikirim! Terima kasih.',
+            'success'
         );
 
         contactForm.reset();
 
     } catch (error) {
+        console.error('FormSubmit Error:', error);
+
         showToast(
-            "Pesan gagal dikirim. Silakan coba lagi.",
-            "error"
+            error.message || 'Pesan gagal dikirim. Coba lagi.',
+            'error'
         );
 
     } finally {
@@ -1206,6 +1216,7 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.innerHTML = originalText;
     }
 });
+
 
 
         // Download CV trigger notification
